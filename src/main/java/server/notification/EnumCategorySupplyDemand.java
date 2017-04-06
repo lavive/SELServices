@@ -1,0 +1,23 @@
+package server.notification;
+
+public enum EnumCategorySupplyDemand {
+	
+	FOOD,
+	ART_ENTERTAINMENT,
+	WELL_BEING,
+	DOIT_YOURSELF,
+	ITEM,
+	HELP_TO_PERSON,
+	CHILD_CARE,
+	PET_CARE,
+	COMPUTING,
+	GARDEN,
+	HOUSE,
+	ACCOMODATION,
+	COURSE,
+	HOBBIES,
+	CARS,
+	SEWING,
+	VARIOUS;
+
+}
