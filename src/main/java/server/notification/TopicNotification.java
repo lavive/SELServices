@@ -1,6 +1,6 @@
 package server.notification;
 
-import shared.CategoryDto;
+import shared.dto.CategoryDto;
 import shared.interfaceDto.PersonDto;
 
 public interface TopicNotification {

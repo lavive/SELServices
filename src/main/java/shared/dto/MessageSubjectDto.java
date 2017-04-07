@@ -1,10 +1,10 @@
-package shared;
+package shared.dto;
 
 import java.io.Serializable;
 
 import shared.interfaceDto.MarkerDto;
 
-public class NotificationSubjectDto implements Serializable,MarkerDto{
+public class MessageSubjectDto implements Serializable,MarkerDto{
 	
 	/**
 	 * For checking version
@@ -15,7 +15,7 @@ public class NotificationSubjectDto implements Serializable,MarkerDto{
 	
 	private MemberDto transmitterMember;	
 	
-	private NotificationDto notification;
+	private MessageDto message;
 
 	private String type;
 
@@ -40,12 +40,12 @@ public class NotificationSubjectDto implements Serializable,MarkerDto{
 		this.transmitterMember = transmitterMember;
 	}
 
-	public NotificationDto getNotification() {
-		return notification;
+	public MessageDto getMessage() {
+		return message;
 	}
 
-	public void setNotification(NotificationDto notification) {
-		this.notification = notification;
+	public void setMessage(MessageDto notification) {
+		this.message = notification;
 	}
 
 	public String getType() {

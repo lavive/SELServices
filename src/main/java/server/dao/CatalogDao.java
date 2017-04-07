@@ -2,8 +2,8 @@ package server.dao;
 
 
 import server.dao.interfaceDao.InterfaceDao;
-import shared.CatalogDto;
-import shared.GeneralOfferDto;
+import shared.dto.CatalogDto;
+import shared.dto.GeneralOfferDto;
 
 public interface CatalogDao extends InterfaceDao<CatalogDto>{
 

@@ -1,9 +1,11 @@
-package shared;
+package shared.dto;
 
 import java.io.Serializable;
 
+import shared.interfaceDto.MarkerDto;
 
-public class CategoryDto implements Serializable {
+
+public class CategoryDto implements Serializable,MarkerDto {
 
 	/**
 	 * For checking version

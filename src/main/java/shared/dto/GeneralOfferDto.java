@@ -1,10 +1,11 @@
-package shared;
+package shared.dto;
 
 import java.io.Serializable;
 
 import shared.interfaceDto.MarkerDto;
 
-public class SupplyDemandDto implements Serializable,MarkerDto{
+
+public class GeneralOfferDto implements Serializable,MarkerDto{
 
 	/**
 	 * For checking version
@@ -13,13 +14,9 @@ public class SupplyDemandDto implements Serializable,MarkerDto{
 	
 	private Integer id;
 
-	private String type;
-
 	private String category;
 
 	private String title;
-	
-	private MemberDto member;	
 
 
 	/* getter and setter */
@@ -30,14 +27,6 @@ public class SupplyDemandDto implements Serializable,MarkerDto{
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public String getCategory() {
@@ -56,11 +45,4 @@ public class SupplyDemandDto implements Serializable,MarkerDto{
 		this.title = title;
 	}
 
-	public MemberDto getMember() {
-		return member;
-	}
-
-	public void setMember(MemberDto member) {
-		this.member = member;
-	}	
 }

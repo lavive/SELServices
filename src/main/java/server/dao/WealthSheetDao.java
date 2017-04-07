@@ -3,8 +3,8 @@ package server.dao;
 import java.util.List;
 
 import server.dao.interfaceDao.InterfaceDao;
-import shared.PaymentDto;
-import shared.WealthSheetDto;
+import shared.dto.PaymentDto;
+import shared.dto.WealthSheetDto;
 
 public interface WealthSheetDao extends InterfaceDao<WealthSheetDto>{
 	

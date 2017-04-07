@@ -11,8 +11,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "notification_subject")
-public class NotificationSubjectEntity {
+@Table(name = "message_subject")
+public class MessageSubjectEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +23,7 @@ public class NotificationSubjectEntity {
 	private MemberEntity transmitterMember;	
 	
 	@OneToOne(fetch = FetchType.EAGER, mappedBy="subject")
-	private NotificationEntity notification;
+	private MessageEntity message;
 
 	@Column(name = "type", nullable = false)
 	private String type;
@@ -50,12 +50,12 @@ public class NotificationSubjectEntity {
 		this.transmitterMember = transmitterMember;
 	}
 
-	public NotificationEntity getNotification() {
-		return notification;
+	public MessageEntity getMessage() {
+		return message;
 	}
 
-	public void setNotification(NotificationEntity notification) {
-		this.notification = notification;
+	public void setMessage(MessageEntity message) {
+		this.message = message;
 	}
 
 	public String getType() {

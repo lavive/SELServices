@@ -3,11 +3,11 @@ package server.service;
 import java.util.List;
 
 import server.notification.MessageForNotification;
-import shared.MemberDto;
-import shared.NotificationDto;
-import shared.SupplyDemandDto;
+import shared.dto.MemberDto;
+import shared.dto.MessageDto;
+import shared.dto.SupplyDemandDto;
 
-public interface ManageSupplyDemand extends ServiceWithNotification{
+public interface ManageSupplyDemandServ extends ServiceWithNotification{
 
 	public MessageForNotification addSupplyDemand(SupplyDemandDto supplyDemandDto);
 	
@@ -21,6 +21,6 @@ public interface ManageSupplyDemand extends ServiceWithNotification{
 	
 	public MessageForNotification updateSupplyDemand(SupplyDemandDto supplyDemandDto);
 	
-	public NotificationDto notifyMembers(MessageForNotification message);
+	public MessageDto notifyMembers(MessageForNotification message);
 
 }

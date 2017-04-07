@@ -2,9 +2,9 @@ package server.service;
 
 import java.util.List;
 
-import shared.CategoryDto;
+import shared.dto.CategoryDto;
 
-public interface ManageCategory {
+public interface ManageCategoryServ {
 	
 	public void addCategory(CategoryDto categoryDto);
 	

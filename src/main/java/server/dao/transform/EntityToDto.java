@@ -8,28 +8,28 @@ import server.dao.entity.CategoryEntity;
 import server.dao.entity.GeneralOfferEntity;
 import server.dao.entity.MailEntity;
 import server.dao.entity.MemberEntity;
-import server.dao.entity.NotificationEntity;
-import server.dao.entity.NotificationSubjectEntity;
+import server.dao.entity.MessageEntity;
+import server.dao.entity.MessageSubjectEntity;
 import server.dao.entity.PaymentEntity;
 import server.dao.entity.SmsEntity;
 import server.dao.entity.SupplyDemandEntity;
 import server.dao.entity.WealthSheetEntity;
-import shared.AssociationDto;
-import shared.CatalogDto;
-import shared.CategoryDto;
-import shared.GeneralOfferDto;
-import shared.MailDto;
-import shared.MemberDto;
-import shared.NotificationDto;
-import shared.NotificationSubjectDto;
-import shared.PaymentDto;
-import shared.SmsDto;
-import shared.SupplyDemandDto;
-import shared.WealthSheetDto;
+import shared.dto.AssociationDto;
+import shared.dto.CatalogDto;
+import shared.dto.CategoryDto;
+import shared.dto.GeneralOfferDto;
+import shared.dto.MailDto;
+import shared.dto.MemberDto;
+import shared.dto.MessageDto;
+import shared.dto.MessageSubjectDto;
+import shared.dto.PaymentDto;
+import shared.dto.SmsDto;
+import shared.dto.SupplyDemandDto;
+import shared.dto.WealthSheetDto;
 
 public class EntityToDto {
 	
-	public static AssociationDto AssociationDtoToEntity(AssociationEntity associationEntity){
+	public static AssociationDto associationDtoToEntity(AssociationEntity associationEntity){
 		AssociationDto associationDto = new AssociationDto();
 		
 		associationDto.setId(associationEntity.getId());
@@ -44,7 +44,7 @@ public class EntityToDto {
 		return associationDto;
 	}
 	
-	public static CatalogDto CatalogEntityToDto(CatalogEntity catalogEntity){
+	public static CatalogDto catalogEntityToDto(CatalogEntity catalogEntity){
 		CatalogDto catalogDto = new CatalogDto();
 		
 		catalogDto.setId(catalogEntity.getId());
@@ -52,14 +52,14 @@ public class EntityToDto {
 		
 		ArrayList<GeneralOfferDto> offersDto = new ArrayList<GeneralOfferDto>();
 		for(GeneralOfferEntity offerEntity:catalogEntity.getOffers()){
-			offersDto.add(GeneralOfferEntityToDto(offerEntity));
+			offersDto.add(generalOfferEntityToDto(offerEntity));
 		}
 		catalogDto.setOffers(offersDto);
 		
 		return catalogDto;
 	}
 	
-	public static CategoryDto  CategoryDtoToEntity(CategoryEntity categoryEntity){
+	public static CategoryDto  categoryDtoToEntity(CategoryEntity categoryEntity){
 		CategoryDto categoryDto = new CategoryDto();
 		
 		categoryDto.setId(categoryEntity.getId());
@@ -68,7 +68,7 @@ public class EntityToDto {
 		return categoryDto;
 	}
 	
-	public static GeneralOfferDto GeneralOfferEntityToDto(GeneralOfferEntity generalOfferEntity){
+	public static GeneralOfferDto generalOfferEntityToDto(GeneralOfferEntity generalOfferEntity){
 		GeneralOfferDto generalOfferDto = new GeneralOfferDto();
 		
 		generalOfferDto.setId(generalOfferEntity.getId());
@@ -78,25 +78,25 @@ public class EntityToDto {
 		return generalOfferDto;
 	}
 	
-	public static MailDto MailEntityToDtoy(MailEntity mailEntity){
+	public static MailDto mailEntityToDtoy(MailEntity mailEntity){
 		MailDto mailDto = new MailDto();
 		
 		mailDto.setId(mailEntity.getId());
 		mailDto.setSubject(mailEntity.getSubject());
 		mailDto.setMessageBody(mailEntity.getMessageBody());
 		
-		mailDto.setTransmitterMember(MemberEntityToDto(mailEntity.getTransmitterMember()));
+		mailDto.setTransmitterMember(memberEntityToDto(mailEntity.getTransmitterMember()));
 		
 		ArrayList<MemberDto> membersDto = new ArrayList<MemberDto>();
 		for(MemberEntity memberEntity:mailEntity.getRecipientMember()){
-			membersDto.add(MemberEntityToDto(memberEntity));
+			membersDto.add(memberEntityToDto(memberEntity));
 		}
 		mailDto.setRecipientMember(membersDto);
 		
 		return mailDto;
 	}
 	
-	public static MemberDto MemberEntityToDto(MemberEntity memberEntity){
+	public static MemberDto memberEntityToDto(MemberEntity memberEntity){
 		MemberDto memberDto = new MemberDto();
 		
 		memberDto.setId(memberEntity.getId());
@@ -108,11 +108,11 @@ public class EntityToDto {
 		memberDto.setPhoneNumber(memberEntity.getPhoneNumber());
 		memberDto.setTown(memberEntity.getTown());
 		
-		memberDto.setWealthSheet(WealthSheetEntityToDto(memberEntity.getWealthSheet()));
+		memberDto.setWealthSheet(wealthSheetEntityToDto(memberEntity.getWealthSheet()));
 		
 		ArrayList<SupplyDemandDto> supplyDemandsDto = new ArrayList<SupplyDemandDto>();
 		for(SupplyDemandEntity supplyDemandEntity:memberEntity.getSupplyDemand()){
-			supplyDemandsDto.add(SupplyDemandEntityToDto(supplyDemandEntity));
+			supplyDemandsDto.add(supplyDemandEntityToDto(supplyDemandEntity));
 		}
 		memberDto.setSupplyDemand(supplyDemandsDto);
 		
@@ -120,81 +120,81 @@ public class EntityToDto {
 		return memberDto;
 	}
 	
-	public static NotificationDto NotificationEntityToDto(NotificationEntity notificationEntity){
-		NotificationDto notificationDto = new NotificationDto();
+	public static MessageDto messageEntityToDto(MessageEntity messagenEntity){
+		MessageDto messageDto = new MessageDto();
 		
-		notificationDto.setId(notificationEntity.getId());
-		notificationDto.setText(notificationEntity.getText());
-		notificationDto.setState(notificationEntity.isState());
-		notificationDto.setSubject(NotificationSubjectEntityToDto(notificationEntity.getSubject()));
+		messageDto.setId(messagenEntity.getId());
+		messageDto.setText(messagenEntity.getText());
+		messageDto.setState(messagenEntity.isState());
+		messageDto.setSubject(messageSubjectEntityToDto(messagenEntity.getSubject()));
 		
-		return notificationDto;
+		return messageDto;
 	}
 	
-	public static NotificationSubjectDto NotificationSubjectEntityToDto(NotificationSubjectEntity notificationSubjectEntity){
-		NotificationSubjectDto notificationSubjectDto = new NotificationSubjectDto();
+	public static MessageSubjectDto messageSubjectEntityToDto(MessageSubjectEntity messageSubjectEntity){
+		MessageSubjectDto messageSubjectDto = new MessageSubjectDto();
 		
-		notificationSubjectDto.setId(notificationSubjectEntity.getId());
-		notificationSubjectDto.setType(notificationSubjectEntity.getType());
-		notificationSubjectDto.setTitle(notificationSubjectEntity.getTitle());		
-		notificationSubjectDto.setNotification(NotificationEntityToDto(notificationSubjectEntity.getNotification()));
-		notificationSubjectDto.setTransmitterMember(MemberEntityToDto(notificationSubjectEntity.getTransmitterMember()));
+		messageSubjectDto.setId(messageSubjectEntity.getId());
+		messageSubjectDto.setType(messageSubjectEntity.getType());
+		messageSubjectDto.setTitle(messageSubjectEntity.getTitle());		
+		messageSubjectDto.setMessage(messageEntityToDto(messageSubjectEntity.getMessage()));
+		messageSubjectDto.setTransmitterMember(memberEntityToDto(messageSubjectEntity.getTransmitterMember()));
 		
-		return notificationSubjectDto;
+		return messageSubjectDto;
 	}
 	
-	public static PaymentDto PaymentEntityToDto(PaymentEntity PaymentEntity){
+	public static PaymentDto paymentEntityToDto(PaymentEntity PaymentEntity){
 		PaymentDto paymentDto = new PaymentDto();
 		
 		paymentDto.setId(PaymentEntity.getId());
 		paymentDto.setAmount(PaymentEntity.getAmount());
-		paymentDto.setCreditorMember(MemberEntityToDto(PaymentEntity.getCreditorMember()));
-		paymentDto.setDebtorMember(MemberEntityToDto(PaymentEntity.getDebtorMember()));
-		paymentDto.setSupplyDemand(SupplyDemandEntityToDto(PaymentEntity.getSupplyDemand()));
+		paymentDto.setCreditorMember(memberEntityToDto(PaymentEntity.getCreditorMember()));
+		paymentDto.setDebtorMember(memberEntityToDto(PaymentEntity.getDebtorMember()));
+		paymentDto.setSupplyDemand(supplyDemandEntityToDto(PaymentEntity.getSupplyDemand()));
 		
 		return paymentDto;
 	}
 	
-	public static SmsDto SMSEntityToDto(SmsEntity smsEntity){
+	public static SmsDto smsEntityToDto(SmsEntity smsEntity){
 		SmsDto smsDto = new SmsDto();
 		
 		smsDto.setId(smsEntity.getId());
 		smsDto.setMessageBody(smsEntity.getMessageBody());
 		
-		smsDto.setTransmitterMember(MemberEntityToDto(smsEntity.getTransmitterMember()));
+		smsDto.setTransmitterMember(memberEntityToDto(smsEntity.getTransmitterMember()));
 		
 		ArrayList<MemberDto> membersDto = new ArrayList<MemberDto>();
 		for(MemberEntity memberEntity:smsEntity.getRecipientMember()){
-			membersDto.add(MemberEntityToDto(memberEntity));
+			membersDto.add(memberEntityToDto(memberEntity));
 		}
 		smsDto.setRecipientMember(membersDto);
 		
 		return smsDto;
 	}
 	
-	public static SupplyDemandDto SupplyDemandEntityToDto(SupplyDemandEntity SupplyDemandEntity){
+	public static SupplyDemandDto supplyDemandEntityToDto(SupplyDemandEntity SupplyDemandEntity){
 		SupplyDemandDto supplyDemandDto = new SupplyDemandDto();
 		
 		supplyDemandDto.setId(SupplyDemandEntity.getId());
 		supplyDemandDto.setCategory(SupplyDemandEntity.getCategory());
 		supplyDemandDto.setTitle(SupplyDemandEntity.getTitle());
 		supplyDemandDto.setType(SupplyDemandEntity.getType());
-		supplyDemandDto.setMember(MemberEntityToDto(SupplyDemandEntity.getMember()));
+		supplyDemandDto.setMember(memberEntityToDto(SupplyDemandEntity.getMember()));
 		
 		return supplyDemandDto;
 	}
 	
-	public static WealthSheetDto WealthSheetEntityToDto(WealthSheetEntity WealthSheetEntity){
+	public static WealthSheetDto wealthSheetEntityToDto(WealthSheetEntity WealthSheetEntity){
 		WealthSheetDto wealthSheetDto = new WealthSheetDto();
 		
 		wealthSheetDto.setId(WealthSheetEntity.getId());
 		wealthSheetDto.setInitialAccount(WealthSheetEntity.getInitialAccount());
 		wealthSheetDto.setFinalAccount(WealthSheetEntity.getFinalAccount());
-		wealthSheetDto.setMember(MemberEntityToDto(WealthSheetEntity.getMember()));
+		wealthSheetDto.setMember(memberEntityToDto(WealthSheetEntity.getMember()));
 		
 		ArrayList<PaymentDto> paymentsDto = new ArrayList<PaymentDto>();
 		for(PaymentEntity paymentEntity:WealthSheetEntity.getPayment()){
-			paymentsDto.add(PaymentEntityToDto(paymentEntity));
+			paymentsDto.add(paymentEntityToDto(paymentEntity));
 		}
 		wealthSheetDto.setPayment(paymentsDto);
 		

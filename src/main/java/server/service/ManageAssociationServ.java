@@ -1,10 +1,10 @@
 package server.service;
 
 import server.notification.MessageForNotification;
-import shared.AssociationDto;
-import shared.NotificationDto;
+import shared.dto.AssociationDto;
+import shared.dto.MessageDto;
 
-public interface ManageAssociation extends ServiceWithNotification{
+public interface ManageAssociationServ extends ServiceWithNotification{
 	
 	public void createAssociation(AssociationDto associationDto);
 	
@@ -14,6 +14,6 @@ public interface ManageAssociation extends ServiceWithNotification{
 	
 	public AssociationDto getAssociation();
 	
-	public NotificationDto notifyMembers(MessageForNotification message);
+	public MessageDto notifyMembers(MessageForNotification message);
 
 }

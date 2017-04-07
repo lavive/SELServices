@@ -3,7 +3,7 @@ package server.dao;
 import java.util.List;
 
 import server.dao.interfaceDao.InterfaceDao;
-import shared.MemberDto;
+import shared.dto.MemberDto;
 
 public interface MemberDao extends InterfaceDao<MemberDto>{
 
@@ -21,7 +21,7 @@ public interface MemberDao extends InterfaceDao<MemberDto>{
 	
 	public List<MemberDto> getMembersBySupplyDemand(String type,String category);
 	
-	public List<MemberDto> getMembersByData(MemberDto memberDto);
+	//public List<MemberDto> getMembersByData(MemberDto memberDto);
 	
 	//public void deleteMember(MemberDto memberDto);
 	

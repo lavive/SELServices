@@ -1,12 +1,14 @@
-package shared;
+package shared.dto;
 
 import java.io.Serializable;
 import java.util.List;
 
 import shared.interfaceDto.MarkerDto;
 
-public class SmsDto implements Serializable,MarkerDto{
-	
+
+
+public class MailDto implements Serializable,MarkerDto{
+
 	/**
 	 * For checking version
 	 */
@@ -14,12 +16,14 @@ public class SmsDto implements Serializable,MarkerDto{
 	
 	private Integer id;
 
+	private String subject;
+
 	private String messageBody;
-	
+
 	private MemberDto transmitterMember;
 	
 	private List<MemberDto> recipientMember;
-	
+
 
 	/* getter and setter */
 
@@ -29,6 +33,14 @@ public class SmsDto implements Serializable,MarkerDto{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 
 	public String getMessageBody() {
@@ -54,5 +66,7 @@ public class SmsDto implements Serializable,MarkerDto{
 	public void setRecipientMember(List<MemberDto> recipientMember) {
 		this.recipientMember = recipientMember;
 	}
+	
+	
 
 }

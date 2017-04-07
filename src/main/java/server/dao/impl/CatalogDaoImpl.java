@@ -8,8 +8,8 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import server.dao.CatalogDao;
-import shared.CatalogDto;
-import shared.GeneralOfferDto;
+import shared.dto.CatalogDto;
+import shared.dto.GeneralOfferDto;
 
 
 @Named(value = "service.dao.CatalogDao")

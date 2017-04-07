@@ -2,7 +2,7 @@ package server.dao;
 
 
 import server.dao.interfaceDao.InterfaceDao;
-import shared.PaymentDto;
+import shared.dto.PaymentDto;
 
 public interface PaymentDao extends InterfaceDao<PaymentDto>{
 	
