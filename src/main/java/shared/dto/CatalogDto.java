@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import shared.interfaceDto.MarkerDto;
+import shared.interfaceDto.MarkerDao;
 
 
 
-public class CatalogDto implements Serializable,MarkerDto{
+public class CatalogDto implements Serializable,MarkerDao{
 
 
 	/**

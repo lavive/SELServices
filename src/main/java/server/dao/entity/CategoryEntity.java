@@ -7,9 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import server.dao.interfaces.MarkerEntity;
+
 @Entity
 @Table(name = "category")
-public class CategoryEntity {
+public class CategoryEntity implements MarkerEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

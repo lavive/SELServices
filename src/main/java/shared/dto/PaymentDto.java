@@ -3,9 +3,9 @@ package shared.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import shared.interfaceDto.MarkerDto;
+import shared.interfaceDto.MarkerDao;
 
-public class PaymentDto implements Serializable,MarkerDto{
+public class PaymentDto implements Serializable,MarkerDao{
 	
 	/**
 	 * For checking version

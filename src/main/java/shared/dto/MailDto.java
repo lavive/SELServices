@@ -3,11 +3,11 @@ package shared.dto;
 import java.io.Serializable;
 import java.util.List;
 
-import shared.interfaceDto.MarkerDto;
+import shared.interfaceDto.MarkerDao;
 
 
 
-public class MailDto implements Serializable,MarkerDto{
+public class MailDto implements Serializable,MarkerDao{
 
 	/**
 	 * For checking version

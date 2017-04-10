@@ -10,9 +10,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import server.dao.interfaces.MarkerEntity;
+
 @Entity
 @Table(name = "message_subject")
-public class MessageSubjectEntity {
+public class MessageSubjectEntity implements MarkerEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,5 +1,7 @@
 package server.dao.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,12 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import server.dao.interfaces.MarkerEntity;
+
 @Entity
 @Table(name = "message")
-public class MessageEntity {
+public class MessageEntity implements MarkerEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +33,14 @@ public class MessageEntity {
 	
 	@Column(name = "state")
 	private boolean state;
-
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "person_id")
+	private PersonEntity person;
+	
+	@Column(name = "date", nullable = false)
+	private Date date;
+	
 	/* getter and setter */
 
 	public Integer getId() {
@@ -61,5 +73,21 @@ public class MessageEntity {
 
 	public void setState(boolean state) {
 		this.state = state;
+	}
+
+	public PersonEntity getPerson() {
+		return person;
+	}
+
+	public void setPerson(PersonEntity person) {
+		this.person = person;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }

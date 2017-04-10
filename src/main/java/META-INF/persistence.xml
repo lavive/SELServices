@@ -14,5 +14,8 @@
 	<class>server.dao.entity.WealthSheetEntity</class>
 	<class>server.dao.entity.AssociationEntity</class>
 	<class>server.dao.entity.CategoryEntity</class>
+	<class>server.dao.entity.PersonEntity</class>
+	<class>server.dao.entity.NotificationEntity</class>
+	<class>server.dao.entity.NotificationTopicEntity</class>
 	</persistence-unit>
 </persistence>

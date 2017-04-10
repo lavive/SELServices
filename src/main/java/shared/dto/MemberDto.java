@@ -3,10 +3,10 @@ package shared.dto;
 import java.io.Serializable;
 import java.util.List;
 
-import shared.interfaceDto.MarkerDto;
+import shared.interfaceDto.MarkerDao;
 import shared.interfaceDto.PersonDto;
 
-public class MemberDto implements PersonDto,Serializable,MarkerDto{
+public class MemberDto implements PersonDto,Serializable,MarkerDao{
 	
 	/**
 	 * For checking version

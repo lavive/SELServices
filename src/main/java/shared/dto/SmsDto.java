@@ -3,9 +3,9 @@ package shared.dto;
 import java.io.Serializable;
 import java.util.List;
 
-import shared.interfaceDto.MarkerDto;
+import shared.interfaceDto.MarkerDao;
 
-public class SmsDto implements Serializable,MarkerDto{
+public class SmsDto implements Serializable,MarkerDao{
 	
 	/**
 	 * For checking version

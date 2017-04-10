@@ -1,6 +1,6 @@
 package server.service;
 
-import server.notification.NotificationFactory;
+import server.notification.factory.NotificationFactory;
 
 public interface ServiceWithNotification {
 	

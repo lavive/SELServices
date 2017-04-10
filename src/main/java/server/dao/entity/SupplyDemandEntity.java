@@ -10,9 +10,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import server.dao.constantes.EnumSupplyDemand;
+import server.dao.interfaces.MarkerEntity;
+
 @Entity
 @Table(name = "supply_demand")
-public class SupplyDemandEntity {
+public class SupplyDemandEntity implements MarkerEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +23,7 @@ public class SupplyDemandEntity {
 	private Integer id;
 
 	@Column(name = "type", nullable = false)
-	private String type;
+	private EnumSupplyDemand type;
 
 	@Column(name = "category")
 	private String category;
@@ -43,11 +46,11 @@ public class SupplyDemandEntity {
 		this.id = id;
 	}
 
-	public String getType() {
+	public EnumSupplyDemand getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(EnumSupplyDemand type) {
 		this.type = type;
 	}
 

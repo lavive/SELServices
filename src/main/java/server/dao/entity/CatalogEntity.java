@@ -12,9 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import server.dao.interfaces.MarkerEntity;
+
 @Entity
 @Table(name = "catalog")
-public class CatalogEntity {
+public class CatalogEntity implements MarkerEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

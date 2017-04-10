@@ -2,10 +2,10 @@ package shared.dto;
 
 import java.io.Serializable;
 
-import shared.interfaceDto.MarkerDto;
+import shared.interfaceDto.MarkerDao;
 
 
-public class GeneralOfferDto implements Serializable,MarkerDto{
+public class GeneralOfferDto implements Serializable,MarkerDao{
 
 	/**
 	 * For checking version

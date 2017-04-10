@@ -2,11 +2,11 @@ package shared.dto;
 
 import java.io.Serializable;
 
-import shared.interfaceDto.MarkerDto;
+import shared.interfaceDto.MarkerDao;
 import shared.interfaceDto.PersonDto;
 
 
-public class AssociationDto implements PersonDto,Serializable,MarkerDto {
+public class AssociationDto implements PersonDto,Serializable,MarkerDao {
 
 	/**
 	 * For checking version

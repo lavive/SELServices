@@ -13,9 +13,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import server.dao.interfaces.MarkerEntity;
+
 @Entity
 @Table(name = "wealth_sheet")
-public class WealthSheetEntity {
+public class WealthSheetEntity implements MarkerEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -2,9 +2,10 @@ package shared.dto;
 
 import java.io.Serializable;
 
-import shared.interfaceDto.MarkerDto;
+import server.dao.constantes.EnumSupplyDemand;
+import shared.interfaceDto.MarkerDao;
 
-public class SupplyDemandDto implements Serializable,MarkerDto{
+public class SupplyDemandDto implements Serializable,MarkerDao{
 
 	/**
 	 * For checking version
@@ -13,7 +14,7 @@ public class SupplyDemandDto implements Serializable,MarkerDto{
 	
 	private Integer id;
 
-	private String type;
+	private EnumSupplyDemand type;
 
 	private String category;
 
@@ -32,11 +33,11 @@ public class SupplyDemandDto implements Serializable,MarkerDto{
 		this.id = id;
 	}
 
-	public String getType() {
+	public EnumSupplyDemand getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(EnumSupplyDemand type) {
 		this.type = type;
 	}
 

@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
-import shared.interfaceDto.MarkerDto;
+import shared.interfaceDto.MarkerDao;
 
 
-public class WealthSheetDto implements Serializable,MarkerDto{
+public class WealthSheetDto implements Serializable,MarkerDao{
 
 	/**
 	 * For checking version
