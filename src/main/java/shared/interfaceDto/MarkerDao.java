@@ -1,5 +1,5 @@
-package shared.interfaceDto;
-
-public interface MarkerDao {
-
-}
+//package shared.interfaceDto;
+//
+//public interface MarkerDao {
+//
+//}

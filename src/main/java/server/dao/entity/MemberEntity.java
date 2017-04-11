@@ -24,6 +24,9 @@ public class MemberEntity extends PersonEntity implements MarkerEntity{
 	@Column(name = "forname")
 	private String forname;
 	
+	@Column(name ="mobile_id")
+	private String mobileId;
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy= "member")
 	private List<SupplyDemandEntity> supplyDemand;
 	
@@ -48,6 +51,14 @@ public class MemberEntity extends PersonEntity implements MarkerEntity{
 	public void setForname(String forname) {
 		this.forname = forname;
 	}	
+
+	public String getMobileId() {
+		return mobileId;
+	}
+
+	public void setMobileId(String mobileId) {
+		this.mobileId = mobileId;
+	}
 
 	public List<SupplyDemandEntity> getSupplyDemand() {
 		return supplyDemand;

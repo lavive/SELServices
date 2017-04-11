@@ -82,7 +82,7 @@ public class NotificationMemberFactoryBean implements NotificationMemberFactoryL
 		
 		String category = null;
 		
-		notificationTopicEntity.setEvent(event);
+		notificationTopicEntity.setTopic(event);
 		notificationTopicEntity.setCategory(category);
 		notificationTopicEntity.setPersonOriginEvent(association);
 		
@@ -118,7 +118,7 @@ public class NotificationMemberFactoryBean implements NotificationMemberFactoryL
 		
 		String category = null;
 		
-		notificationTopicEntity.setEvent(event);
+		notificationTopicEntity.setTopic(event);
 		notificationTopicEntity.setCategory(category);
 		notificationTopicEntity.setPersonOriginEvent(association);
 		
@@ -153,7 +153,7 @@ public class NotificationMemberFactoryBean implements NotificationMemberFactoryL
 		List<MemberEntity> memberToNotify = new ArrayList<MemberEntity>();
 		memberToNotify.add(this.newMember);
 		
-		notificationTopicEntity.setEvent(event);
+		notificationTopicEntity.setTopic(event);
 		notificationTopicEntity.setCategory(category);
 		notificationTopicEntity.setPersonOriginEvent(association);
 		

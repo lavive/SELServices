@@ -1,7 +1,6 @@
 package server.dao.bean;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Singleton;
@@ -13,7 +12,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import server.dao.NotificationDaoLocal;
-import server.dao.entity.MemberEntity;
 import server.dao.entity.NotificationEntity;
 import server.notification.factory.NotificationFactory;
 
@@ -65,95 +63,95 @@ public class NotificationDaoBean implements NotificationDaoLocal {
 		return notificationsResult;
 	}
 
-	@Override
-	public void addNotification(MemberEntity memberEntity, NotificationEntity notificationEntity) {
-		List<MemberEntity> membresANotifier = notificationEntity.getMembresToNotify();
-		if(!membresANotifier.contains(memberEntity)) membresANotifier.add(memberEntity);
-		notificationEntity.setMembresToNotify(membresANotifier);
-		
-
-		List<NotificationEntity> notifications = memberEntity.getNotifications();
-		if(!notifications.contains(memberEntity)) notifications.add(notificationEntity);
-		memberEntity.setNotifications(notifications);
-		
-		this.entityManager.merge(notificationEntity);
-
-	}
-
-	@Override
-	public NotificationEntity getNotification(MemberEntity memberEntity, NotificationEntity notificationEntity) {
-		if(notificationEntity.getMembresToNotify().contains(memberEntity)){
-			CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-			
-			CriteriaQuery<NotificationEntity> query = builder.createQuery(NotificationEntity.class);
-			Root<NotificationEntity> notification = query.from(NotificationEntity.class);
-			query.select(notification).where(builder.equal(notification.get("id"), notificationEntity.getId()));		
-					
-			return this.entityManager.createQuery(query).getSingleResult();			
-		}
-		else return null;		
-		
-	}
-
-	@Override
-	public List<NotificationEntity> getNotifications(MemberEntity memberEntity) {
-		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-		
-		CriteriaQuery<NotificationEntity> query = builder.createQuery(NotificationEntity.class);
-		Root<NotificationEntity> notification = query.from(NotificationEntity.class);
-		
-		query.select(notification).where(builder.equal(notification.get("membresToNotify").get("id"), memberEntity.getId()));		
-				
-		return this.entityManager.createQuery(query).getResultList();
-	}
-
-	@Override
-	public List<MemberEntity> getMembers(NotificationEntity notificationEntity) {
-		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-		
-		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
-		Root<MemberEntity> member = query.from(MemberEntity.class);
-		
-		query.select(member).where(builder.equal(member.get("notifications").get("id"), notificationEntity.getId()));		
-				
-		return this.entityManager.createQuery(query).getResultList();
-	}
-
-	@Override
-	public void deleteNotification(MemberEntity memberEntity) {
-		List<NotificationEntity> notifications = getNotifications(memberEntity);
-		memberEntity.getNotifications().removeAll(notifications);		
-		
-		for(NotificationEntity notification:notifications){
-			notification.getMembresToNotify().remove(memberEntity); 
-		}
-		this.entityManager.flush();
-		
-		Iterator<NotificationEntity> iterator = getNotifications(memberEntity).iterator();
-		while ( iterator.hasNext() ) {
-			NotificationEntity notification = iterator.next();
-			if(notification.getMembresToNotify().isEmpty()){ 
-		        iterator.remove();
-		        delete(notification);
-		    }
-		}	
-		this.entityManager.flush();
-	}
-
-	@Override
-	public void deleteNotification(MemberEntity memberEntity, NotificationEntity notificationEntity) {
-		List<MemberEntity> membresANotifier = notificationEntity.getMembresToNotify();
-		if(!membresANotifier.contains(memberEntity)) membresANotifier.remove(memberEntity);
-		notificationEntity.setMembresToNotify(membresANotifier);
-		
-
-		List<NotificationEntity> notifications = memberEntity.getNotifications();
-		if(!notifications.contains(memberEntity)) notifications.remove(notificationEntity);
-		memberEntity.setNotifications(notifications);
-		
-		this.entityManager.merge(notificationEntity);
-
-	}
+//	@Override
+//	public void addNotification(MemberEntity memberEntity, NotificationEntity notificationEntity) {
+//		List<MemberEntity> membresANotifier = notificationEntity.getMembresToNotify();
+//		if(!membresANotifier.contains(memberEntity)) membresANotifier.add(memberEntity);
+//		notificationEntity.setMembresToNotify(membresANotifier);
+//		
+//
+//		List<NotificationEntity> notifications = memberEntity.getNotifications();
+//		if(!notifications.contains(memberEntity)) notifications.add(notificationEntity);
+//		memberEntity.setNotifications(notifications);
+//		
+//		this.entityManager.merge(notificationEntity);
+//
+//	}
+//
+//	@Override
+//	public NotificationEntity getNotification(MemberEntity memberEntity, NotificationEntity notificationEntity) {
+//		if(notificationEntity.getMembresToNotify().contains(memberEntity)){
+//			CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+//			
+//			CriteriaQuery<NotificationEntity> query = builder.createQuery(NotificationEntity.class);
+//			Root<NotificationEntity> notification = query.from(NotificationEntity.class);
+//			query.select(notification).where(builder.equal(notification.get("id"), notificationEntity.getId()));		
+//					
+//			return this.entityManager.createQuery(query).getSingleResult();			
+//		}
+//		else return null;		
+//		
+//	}
+//
+//	@Override
+//	public List<NotificationEntity> getNotifications(MemberEntity memberEntity) {
+//		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+//		
+//		CriteriaQuery<NotificationEntity> query = builder.createQuery(NotificationEntity.class);
+//		Root<NotificationEntity> notification = query.from(NotificationEntity.class);
+//		
+//		query.select(notification).where(builder.equal(notification.get("membresToNotify").get("id"), memberEntity.getId()));		
+//				
+//		return this.entityManager.createQuery(query).getResultList();
+//	}
+//
+//	@Override
+//	public List<MemberEntity> getMembers(NotificationEntity notificationEntity) {
+//		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+//		
+//		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
+//		Root<MemberEntity> member = query.from(MemberEntity.class);
+//		
+//		query.select(member).where(builder.equal(member.get("notifications").get("id"), notificationEntity.getId()));		
+//				
+//		return this.entityManager.createQuery(query).getResultList();
+//	}
+//
+//	@Override
+//	public void deleteNotification(MemberEntity memberEntity) {
+//		List<NotificationEntity> notifications = getNotifications(memberEntity);
+//		memberEntity.getNotifications().removeAll(notifications);		
+//		
+//		for(NotificationEntity notification:notifications){
+//			notification.getMembresToNotify().remove(memberEntity); 
+//		}
+//		this.entityManager.flush();
+//		
+//		Iterator<NotificationEntity> iterator = getNotifications(memberEntity).iterator();
+//		while ( iterator.hasNext() ) {
+//			NotificationEntity notification = iterator.next();
+//			if(notification.getMembresToNotify().isEmpty()){ 
+//		        iterator.remove();
+//		        delete(notification);
+//		    }
+//		}	
+//		this.entityManager.flush();
+//	}
+//
+//	@Override
+//	public void deleteNotification(MemberEntity memberEntity, NotificationEntity notificationEntity) {
+//		List<MemberEntity> membresANotifier = notificationEntity.getMembresToNotify();
+//		if(!membresANotifier.contains(memberEntity)) membresANotifier.remove(memberEntity);
+//		notificationEntity.setMembresToNotify(membresANotifier);
+//		
+//
+//		List<NotificationEntity> notifications = memberEntity.getNotifications();
+//		if(!notifications.contains(memberEntity)) notifications.remove(notificationEntity);
+//		memberEntity.setNotifications(notifications);
+//		
+//		this.entityManager.merge(notificationEntity);
+//
+//	}
 
 	@Override
 	public NotificationFactory getNotificationFactory() {

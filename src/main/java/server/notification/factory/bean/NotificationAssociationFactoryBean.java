@@ -71,7 +71,7 @@ public class NotificationAssociationFactoryBean implements NotificationAssociati
 		
 		List<MemberEntity> memberToNotify = memberDao.getAllMembers();
 		
-		notificationTopicEntity.setEvent(event);
+		notificationTopicEntity.setTopic(event);
 		notificationTopicEntity.setCategory(category);
 		notificationTopicEntity.setPersonOriginEvent(association);
 		

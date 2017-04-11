@@ -20,7 +20,7 @@ public class NotificationTopicEntity {
 	private Integer id;
 	
 	@Column(name = "event")
-	private String event;
+	private String topic;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn (name="id_person")
@@ -39,12 +39,12 @@ public class NotificationTopicEntity {
 		this.id = id;
 	}
 
-	public String getEvent() {
-		return event;
+	public String getTopic() {
+		return topic;
 	}
 
-	public void setEvent(String event) {
-		this.event = event;
+	public void setTopic(String topic) {
+		this.topic = topic;
 	}
 
 	public PersonEntity getPersonOriginEvent() {

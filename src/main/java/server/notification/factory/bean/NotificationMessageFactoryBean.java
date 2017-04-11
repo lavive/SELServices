@@ -77,7 +77,7 @@ public class NotificationMessageFactoryBean implements NotificationMessageFactor
 		
 		List<MemberEntity> memberToNotify = memberDao.getAllMembers();
 		
-		notificationTopicEntity.setEvent(event);
+		notificationTopicEntity.setTopic(event);
 		notificationTopicEntity.setCategory(category);
 		notificationTopicEntity.setPersonOriginEvent(this.message.getPerson());
 		

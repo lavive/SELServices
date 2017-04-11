@@ -16,10 +16,8 @@ import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
 import server.dao.MessageDaoLocal;
-import server.dao.entity.MailEntity;
 import server.dao.entity.MessageEntity;
 import server.dao.entity.PersonEntity;
-import server.dao.entity.SmsEntity;
 import server.notification.factory.NotificationFactory;
 import server.notification.factory.NotificationMessageFactoryLocal;
 
@@ -81,43 +79,7 @@ public class MessageDaoBean implements MessageDaoLocal {
 				
 		return this.entityManager.createQuery(query).getResultList();
 	}
-
-	@Override
-	public void createSMS(MessageEntity notificationEntity) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public SmsEntity getSMS(MessageEntity notificationEntity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void deleteSMS(MessageEntity notificationEntity) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void createMail(MessageEntity notificationEntity) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public MailEntity getMail(MessageEntity notificationEntity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void deleteMail(MessageEntity notificationEntity) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	@Override
 	public List<MessageEntity> getMessages() {
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();

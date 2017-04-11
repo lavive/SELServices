@@ -92,7 +92,7 @@ public class NotificationSupplyDemandFactoryBean implements NotificationSupplyDe
 		
 		List<MemberEntity> memberToNotify = memberDao.getAllMembers();
 		
-		notificationTopicEntity.setEvent(event);
+		notificationTopicEntity.setTopic(event);
 		notificationTopicEntity.setCategory(category);
 		notificationTopicEntity.setPersonOriginEvent(this.memberOrigin);
 		
@@ -127,7 +127,7 @@ public class NotificationSupplyDemandFactoryBean implements NotificationSupplyDe
 		
 		List<MemberEntity> memberToNotify = memberDao.getAllMembers();
 		
-		notificationTopicEntity.setEvent(event);
+		notificationTopicEntity.setTopic(event);
 		notificationTopicEntity.setCategory(category);
 		notificationTopicEntity.setPersonOriginEvent(this.memberOrigin);
 		
