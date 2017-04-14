@@ -9,11 +9,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
 import server.dao.MemberDaoLocal;
+import server.dao.NotificationDaoLocal;
 import server.dao.NotificationsMemberDaoLocal;
 import server.dao.entity.MemberEntity;
+import server.dao.entity.NotificationEntity;
 import server.dao.entity.NotificationsMemberEntity;
 import server.notification.factory.NotificationFactory;
 
@@ -23,6 +27,9 @@ public class NotificationsMemberDaoBean implements NotificationsMemberDaoLocal {
 	
 	@EJB
 	private MemberDaoLocal memberDao;
+	
+	@EJB
+	private NotificationDaoLocal notificationDao;
 	
 	@PersistenceContext
 	private EntityManager entityManager;	
@@ -95,6 +102,40 @@ public class NotificationsMemberDaoBean implements NotificationsMemberDaoLocal {
 		}
 		
 	}
+
+	@Override
+	public List<NotificationEntity> getNotifications(int memberId) {
+		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+		
+		CriteriaQuery<NotificationsMemberEntity> query = builder.createQuery(NotificationsMemberEntity.class);
+		Root<NotificationsMemberEntity> notificationsMember = query.from(NotificationsMemberEntity.class);
+		Join<NotificationsMemberEntity,MemberEntity> notificationsMemberMember = notificationsMember.join("member",JoinType.LEFT);
+		
+		query.select(notificationsMember).where(builder.equal(notificationsMemberMember.get("id"), memberId));
+		
+		return this.entityManager.createQuery(query).getSingleResult().getNotifications();
+	}
+
+	@Override
+	public void deleteNotification(int memberId, int notificationId) {
+		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+		
+		CriteriaQuery<NotificationsMemberEntity> query = builder.createQuery(NotificationsMemberEntity.class);
+		Root<NotificationsMemberEntity> notificationsMember = query.from(NotificationsMemberEntity.class);
+		Join<NotificationsMemberEntity,MemberEntity> notificationsMemberMember = notificationsMember.join("member",JoinType.LEFT);
+		
+		query.select(notificationsMember).where(builder.equal(notificationsMemberMember.get("id"), memberId));
+		
+		NotificationsMemberEntity notificationsMemberEntity = this.entityManager.createQuery(query).getSingleResult();
+		
+		notificationsMemberEntity.getNotifications().remove(notificationDao.getNotification(notificationId));
+		
+		this.entityManager.merge(notificationsMemberEntity);
+		
+		
+	}
+	
+	
 	
 	private NotificationsMemberEntity isInside(MemberEntity member, List<NotificationsMemberEntity> notificationsMembers){
 		

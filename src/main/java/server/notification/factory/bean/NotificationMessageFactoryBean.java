@@ -63,9 +63,9 @@ public class NotificationMessageFactoryBean implements NotificationMessageFactor
 		String category = null;
 		
 		String origin = null;
-		if(this.message.getPerson() instanceof MemberEntity){
-			origin = ((MemberEntity) this.message.getPerson()).getForname()+
-					" "+this.message.getPerson().getName();
+		if(this.message.getTransmitterPerson() instanceof MemberEntity){
+			origin = ((MemberEntity) this.message.getTransmitterPerson()).getForname()+
+					" "+this.message.getTransmitterPerson().getName();
 		}
 		else{
 			origin = "Le Bureau";
@@ -79,7 +79,7 @@ public class NotificationMessageFactoryBean implements NotificationMessageFactor
 		
 		notificationTopicEntity.setTopic(event);
 		notificationTopicEntity.setCategory(category);
-		notificationTopicEntity.setPersonOriginEvent(this.message.getPerson());
+		notificationTopicEntity.setPersonOriginEvent(this.message.getTransmitterPerson());
 		
 		this.entityManager.persist(notificationTopicEntity);
 		this.entityManager.flush();

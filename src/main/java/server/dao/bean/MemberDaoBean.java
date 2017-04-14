@@ -20,6 +20,7 @@ import javax.persistence.criteria.Root;
 import server.dao.MemberDaoLocal;
 import server.dao.entity.MemberEntity;
 import server.dao.entity.SupplyDemandEntity;
+import server.dao.entity.WealthSheetEntity;
 import server.notification.factory.NotificationFactory;
 import server.notification.factory.NotificationMemberFactoryLocal;
 
@@ -107,7 +108,7 @@ public class MemberDaoBean implements MemberDaoLocal {
 	}
 
 	@Override
-	public MemberEntity getMemberById(Integer id) {
+	public MemberEntity getMemberById(int id) {
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
@@ -181,6 +182,18 @@ public class MemberDaoBean implements MemberDaoLocal {
 	public NotificationFactory getNotificationFactory() {
 
 		return this.notificationFactory;
+	}
+
+	@Override
+	public List<SupplyDemandEntity> getSupplyDemands(int memberId) {
+		
+		return getMemberById(memberId).getSupplyDemand();
+	}
+
+	@Override
+	public WealthSheetEntity getWealthSheetEntity(int memberId) {
+		
+		return getMemberById(memberId).getWealthSheet();
 	}
 
 

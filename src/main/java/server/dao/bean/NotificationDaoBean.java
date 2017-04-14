@@ -159,5 +159,17 @@ public class NotificationDaoBean implements NotificationDaoLocal {
 		return null;
 	}
 
+	@Override
+	public NotificationEntity getNotification(int notificationId) {
+		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+		
+		CriteriaQuery<NotificationEntity> query = builder.createQuery(NotificationEntity.class);
+		Root<NotificationEntity> notification = query.from(NotificationEntity.class);
+		
+		query.select(notification).where(builder.equal(notification.get("id"), notificationId));		
+				
+		return this.entityManager.createQuery(query).getSingleResult();
+	}
+
 	
 }

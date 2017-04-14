@@ -24,7 +24,7 @@ public class MemberEntity extends PersonEntity implements MarkerEntity{
 	@Column(name = "forname")
 	private String forname;
 	
-	@Column(name ="mobile_id")
+	@Column(name ="mobile_id",unique = true)
 	private String mobileId;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy= "member")

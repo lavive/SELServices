@@ -20,7 +20,6 @@ public class NotificationFactoryContextBean implements NotificationFactoryContex
 	public List<NotificationEntity> create(NotificationFactory notificationFactory) {
 		List<NotificationEntity> notifications = notificationFactory.create();
 		for(NotificationEntity notification:notifications){
-			//mediator.sendMessage(mediator.transform(notification));
 			mediator.sendNotification(notification);
 		}
 		return notifications;

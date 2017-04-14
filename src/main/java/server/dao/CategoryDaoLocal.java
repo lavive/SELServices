@@ -11,5 +11,7 @@ import server.dao.interfaces.InterfaceDao;
 public interface CategoryDaoLocal extends InterfaceDao<CategoryEntity> {
 	
 	public List<CategoryEntity> getCategories();
+	
+	public CategoryEntity getCategory(int categoryId);
 
 }

@@ -10,13 +10,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
 import server.dao.SupplyDemandDaoLocal;
 import server.dao.constantes.EnumSupplyDemand;
-import server.dao.entity.MemberEntity;
 import server.dao.entity.SupplyDemandEntity;
 import server.notification.factory.NotificationFactory;
 import server.notification.factory.NotificationSupplyDemandFactoryLocal;
@@ -93,18 +90,18 @@ public class SupplyDemandDaoBean implements SupplyDemandDaoLocal {
 		return this.entityManager.createQuery(query).getResultList();
 	}
 
-	@Override
-	public List<SupplyDemandEntity> getSupplyDemand(MemberEntity memberEntity) {
-		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-		
-		CriteriaQuery<SupplyDemandEntity> query = builder.createQuery(SupplyDemandEntity.class);
-		Root<SupplyDemandEntity> supplyDemand = query.from(SupplyDemandEntity.class);
-		Join<SupplyDemandEntity,MemberEntity> supplyDemandMember = supplyDemand.join("member",JoinType.LEFT);
-				
-		query.select(supplyDemand).where(builder.equal(supplyDemandMember.get("id"), memberEntity.getId()));
-		
-		return this.entityManager.createQuery(query).getResultList();
-	}
+//	@Override
+//	public List<SupplyDemandEntity> getSupplyDemand(MemberEntity memberEntity) {
+//		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+//		
+//		CriteriaQuery<SupplyDemandEntity> query = builder.createQuery(SupplyDemandEntity.class);
+//		Root<SupplyDemandEntity> supplyDemand = query.from(SupplyDemandEntity.class);
+//		Join<SupplyDemandEntity,MemberEntity> supplyDemandMember = supplyDemand.join("member",JoinType.LEFT);
+//				
+//		query.select(supplyDemand).where(builder.equal(supplyDemandMember.get("id"), memberEntity.getId()));
+//		
+//		return this.entityManager.createQuery(query).getResultList();
+//	}
 
 	@Override
 	public SupplyDemandEntity getSupplyDemandById(int id) {
@@ -123,5 +120,18 @@ public class SupplyDemandDaoBean implements SupplyDemandDaoLocal {
 
 		return this.notificationFactory;
 	}
+
+//	@Override
+//	public List<SupplyDemandEntity> getSupplyDemand(int memberEntityId) {
+//		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+//		
+//		CriteriaQuery<SupplyDemandEntity> query = builder.createQuery(SupplyDemandEntity.class);
+//		Root<SupplyDemandEntity> supplyDemand = query.from(SupplyDemandEntity.class);
+//		Join<SupplyDemandEntity,MemberEntity> supplyDemandMember = supplyDemand.join("member",JoinType.LEFT);
+//				
+//		query.select(supplyDemand).where(builder.equal(supplyDemandMember.get("id"), memberEntityId));
+//		
+//		return this.entityManager.createQuery(query).getResultList();
+//	}
 
 }

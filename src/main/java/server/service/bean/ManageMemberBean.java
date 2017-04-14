@@ -1,80 +1,95 @@
-//package server.service.bean;
-//
-//import java.util.List;
-//
-//import javax.ejb.Stateless;
-//
-//import server.notification.MessageForNotification;
-//import server.notification.factory.NotificationFactory;
-//import server.service.ManageMemberLocal;
-//import server.service.exception.MemberCriteriaNullException;
-//import shared.criteria.MemberCriteria;
-//import shared.dto.MemberDto;
-//import shared.dto.MessageDto;
-//
-//@Stateless
-//public class ManageMemberBean implements ManageMemberLocal {
-//	
-//	//private MemberDaoLocal memberDao;
-//
-//	@Override
-//	public NotificationFactory getNotificationFactory() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public List<MemberDto> getLastMembers(int amountMember) {
-//		
-//		return null;//memberDao.getListLastMember(amountMember);
-//	}
-//
-//	@Override
-//	public MessageForNotification addMember(MemberDto memberDto) {
-//		//memberDao.create(memberDto);
-//		return null;
-//	}
-//
-//	@Override
-//	public List<MemberDto> searchMembers(MemberCriteria memberCriteria) throws MemberCriteriaNullException{
-////		if(memberCriteria.isEmpty())
-////			throw new MemberCriteriaNullException("Un des critères de recherche d'un membre au moins ne doit pas être null!");
-////		if(memberCriteria.getName() != null && memberCriteria.getForname() != null)
-////			return memberDao.getMembersByNameAndForname(memberCriteria.getName(),memberCriteria.getForname());
-////		else if(memberCriteria.getName() != null)
-////			return memberDao.getMembersByName(memberCriteria.getName());
-////		else if(memberCriteria.getType() != null && memberCriteria.getCategory() != null)
-////			return memberDao.getMembersBySupplyDemand(memberCriteria.getType(), memberCriteria.getCategory());
-////		else if(memberCriteria.getTown() != null)
-////			return memberDao.getMembersByTown(memberCriteria.getTown());
-////		else
-////			throw new MemberCriteriaNullException("les critères sélectionnés ne permettent pas de récupérer des membres!");
-//			return null;	
-//	}
-//
-//	@Override
-//	public MemberDto getMemberById(int id) {
-//		
-//		return null;//memberDao.getMemberById(id);
-//	}
-//
-//	@Override
-//	public MessageForNotification deleteMember(MemberDto memberDto) {
-//		//memberDao.delete(memberDto);
-//		return null;
-//	}
-//
-//	@Override
-//	public void updateMember(MemberDto memberDto) {
-//		
-//		//memberDao.update(memberDto);
-//
-//	}
-//
-//	@Override
-//	public MessageDto notifyMembers(MessageForNotification message) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//}
+package server.service.bean;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+import server.dao.MemberDaoLocal;
+import server.dao.entity.MemberEntity;
+import server.service.ManageMemberRemote;
+import server.service.exception.MemberCriteriaNullException;
+import server.service.transform.DtoToEntity;
+import server.service.transform.EntityToDto;
+import shared.criteria.MemberCriteria;
+import shared.dto.MemberDto;
+
+@Stateless
+public class ManageMemberBean implements ManageMemberRemote {
+	
+	@EJB
+	private MemberDaoLocal memberDao;
+
+	@Override
+	public List<MemberDto> getLastMembers(int amountMember) {
+		List<MemberDto> members = new ArrayList<MemberDto>();
+		for(MemberEntity member:memberDao.getListLastMember(amountMember)){
+			members.add(EntityToDto.memberEntityToDto(member));
+		}
+		
+		return members;
+	}
+
+	@Override
+	public List<MemberDto> retrieveMembers(MemberCriteria memberCriteria) throws MemberCriteriaNullException{
+		if(memberCriteria == null || memberCriteria.isEmpty())
+			throw new MemberCriteriaNullException("Un des critères de recherche d'un membre au moins ne doit pas être null!");
+		if(memberCriteria.getName() != null && memberCriteria.getForname() != null){
+			List<MemberDto> members = new ArrayList<MemberDto>();
+			for(MemberEntity member:memberDao.getMembersByNameAndForname(memberCriteria.getName(),memberCriteria.getForname())){
+				members.add(EntityToDto.memberEntityToDto(member));
+			}
+			
+			return members;
+		}
+		else if(memberCriteria.getName() != null){
+			List<MemberDto> members = new ArrayList<MemberDto>();
+			for(MemberEntity member:memberDao.getMembersByName(memberCriteria.getName())){
+				members.add(EntityToDto.memberEntityToDto(member));
+			}
+			
+			return members;
+		}
+		else if(memberCriteria.getTown() != null){
+			List<MemberDto> members = new ArrayList<MemberDto>();
+			for(MemberEntity member:memberDao.getMembersByTown(memberCriteria.getTown())){
+				members.add(EntityToDto.memberEntityToDto(member));
+			}
+			
+			return members;			
+		}
+		else{
+			throw new MemberCriteriaNullException("les critères sélectionnés ne permettent pas de récupérer des membres!");
+			
+		}
+	}
+
+	@Override
+	public MemberDto retrieveMember(int id) {
+		
+		return EntityToDto.memberEntityToDto(memberDao.getMemberById(id));
+	}
+
+	@Override
+	public void updateMember(MemberDto memberDto) {
+		
+		memberDao.update(DtoToEntity.memberDtoToEntity(memberDto));
+
+	}
+
+	@Override
+	public void addMember(MemberDto memberDto) {
+		
+		memberDao.create(DtoToEntity.memberDtoToEntity(memberDto));
+		
+	}
+
+	@Override
+	public void deleteMember(int memberId) {
+		
+		memberDao.delete(memberDao.getMemberById(memberId));
+		
+	}
+
+}

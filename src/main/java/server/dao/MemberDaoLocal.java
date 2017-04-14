@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.Local;
 
 import server.dao.entity.MemberEntity;
+import server.dao.entity.SupplyDemandEntity;
+import server.dao.entity.WealthSheetEntity;
 import server.dao.interfaces.InterfaceDao;
 
 @Local
@@ -14,9 +16,7 @@ public interface MemberDaoLocal extends InterfaceDao<MemberEntity>{
 	
 	public List<MemberEntity> getAllMembers();
 	
-	//public void createMember(MemberDto memberDto);
-	
-	public MemberEntity getMemberById(Integer id);
+	public MemberEntity getMemberById(int id);
 	
 	public List<MemberEntity> getMembersByName(String name);
 	
@@ -26,11 +26,9 @@ public interface MemberDaoLocal extends InterfaceDao<MemberEntity>{
 	
 	public List<MemberEntity> getMembersBySupplyDemand(String type,String category);
 	
-	//public List<MemberDto> getMembersByData(MemberDto memberDto);
+	public List<SupplyDemandEntity> getSupplyDemands(int memberId);
 	
-	//public void deleteMember(MemberDto memberDto);
-	
-	//public void updateMember(MemberDto memberDto);
+	public WealthSheetEntity getWealthSheetEntity(int memberId);
 	
 	
 }

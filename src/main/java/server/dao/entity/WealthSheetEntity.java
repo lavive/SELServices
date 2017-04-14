@@ -34,7 +34,7 @@ public class WealthSheetEntity implements MarkerEntity {
 	private BigDecimal finalAccount;
 
 	@OneToMany(fetch = FetchType.EAGER)
-	private List<PaymentEntity> payment;
+	private List<PaymentEntity> payments;
 	
 	
 	/* getter and setter */
@@ -71,12 +71,12 @@ public class WealthSheetEntity implements MarkerEntity {
 		this.finalAccount = finalAccount;
 	}
 
-	public List<PaymentEntity> getPayment() {
-		return payment;
+	public List<PaymentEntity> getPayments() {
+		return payments;
 	}
 
-	public void setPayment(List<PaymentEntity> payment) {
-		this.payment = payment;
+	public void setPayments(List<PaymentEntity> payments) {
+		this.payments = payments;
 	}
 
 	

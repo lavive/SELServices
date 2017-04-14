@@ -72,4 +72,16 @@ public class CategoryDaoBean implements CategoryDaoLocal {
 		return this.notificationFactory;
 	}
 
+	@Override
+	public CategoryEntity getCategory(int categoryId) {
+		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+		
+		CriteriaQuery<CategoryEntity> query = builder.createQuery(CategoryEntity.class);
+		Root<CategoryEntity> category = query.from(CategoryEntity.class);
+		
+		query.select(category).where(builder.equal(category.get("id"), categoryId));		
+				
+		return this.entityManager.createQuery(query).getSingleResult();
+	}
+
 }

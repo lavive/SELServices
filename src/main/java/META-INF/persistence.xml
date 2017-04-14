@@ -6,7 +6,6 @@
 	<class>server.dao.entity.GeneralOfferEntity</class>
 	<class>server.dao.entity.MemberEntity</class>
 	<class>server.dao.entity.MessageEntity</class>
-	<class>server.dao.entity.MessageSubjectEntity</class>
 	<class>server.dao.entity.PaymentEntity</class>
 	<class>server.dao.entity.SupplyDemandEntity</class>
 	<class>server.dao.entity.WealthSheetEntity</class>

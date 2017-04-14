@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import server.dao.interfaces.MarkerEntity;
@@ -24,19 +23,22 @@ public class MessageEntity implements MarkerEntity {
 	@Column(name = "id")
 	private Integer id;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "message_subject_id")
-	private MessageSubjectEntity subject;
+//	@OneToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "message_subject_id")
+//	private MessageSubjectEntity subject;
 
 	@Column(name = "text")
 	private String text;
+	
+	@Column(name = "title")
+	private String title;
 	
 	@Column(name = "state")
 	private boolean state;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "person_id")
-	private PersonEntity person;
+	private PersonEntity transmitterPerson;
 	
 	@Column(name = "date", nullable = false)
 	private Date date;
@@ -51,13 +53,13 @@ public class MessageEntity implements MarkerEntity {
 		this.id = id;
 	}
 
-	public MessageSubjectEntity getSubject() {
-		return subject;
-	}
-
-	public void setSubject(MessageSubjectEntity subject) {
-		this.subject = subject;
-	}
+//	public MessageSubjectEntity getSubject() {
+//		return subject;
+//	}
+//
+//	public void setSubject(MessageSubjectEntity subject) {
+//		this.subject = subject;
+//	}
 
 	public String getText() {
 		return text;
@@ -65,6 +67,14 @@ public class MessageEntity implements MarkerEntity {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public boolean isState() {
@@ -75,12 +85,12 @@ public class MessageEntity implements MarkerEntity {
 		this.state = state;
 	}
 
-	public PersonEntity getPerson() {
-		return person;
+	public PersonEntity getTransmitterPerson() {
+		return transmitterPerson;
 	}
 
-	public void setPerson(PersonEntity person) {
-		this.person = person;
+	public void setTransmitterPerson(PersonEntity person) {
+		this.transmitterPerson = person;
 	}
 
 	public Date getDate() {
